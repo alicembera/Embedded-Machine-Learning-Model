@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import os
+import datetime
  
 st.set_page_config(
     page_title='Predict Customer Churn!',
@@ -73,6 +75,7 @@ def make_prediction(pipeline, encoder):
     # Make a DataFrame
     df = pd.DataFrame(data)
  
+
     # st.write(pipeline)
     # st.write(st.session_state)
     # # info = df.info()
@@ -87,6 +90,13 @@ def make_prediction(pipeline, encoder):
     st.session_state['prediction'] = prediction
     st.session_state['probability'] = probability
    
+    df['prediction'] = prediction
+    df['probability'] = probability
+    df['time_of_prediction'] = datetime.date.today()
+    df['model_used'] = st.session_state['selected_model']
+
+    df.to_csv("Data/history.csv", mode='a', header=not os.path.exists("Data/history.csv"))
+
     return prediction, probability
  
 if 'prediction' not in st.session_state:
@@ -139,9 +149,6 @@ if __name__ == '__main__':
     final_prediction = st.session_state['prediction']
     final_probability = st.session_state['probability']
  
-
- 
- 
     if final_prediction is None:
         st.write('Predictions show here!')
         st.divider()
@@ -155,6 +162,6 @@ if __name__ == '__main__':
             # st.markdown(f'## Churn: {final_prediction}')
             st.markdown(f'### Customer will stay 😊.')
             st.markdown(f'## Probability: {final_probability:.2f}%')
-
-            # st.write(st.session_state)
-        
+            
+ 
+    # st.write(st.session_state)
