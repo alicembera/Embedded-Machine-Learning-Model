@@ -1,0 +1,13 @@
+credentials:
+  usernames:
+    Mbera:
+      email: mberaalice7@gmail.com
+      name: Alice Mbera
+      password: 'Mberamuka@12'  # This should be a hashed password
+cookie:
+  expiry_days: 0
+  key: cookie_signature_key
+  name: cookie_name
+preauthorized:
+  usernames:
+  - Mbera
