@@ -24,7 +24,7 @@ We Created an interactive dashboard to visualize the data from the database with
 ## Predict page.
 Here we interact with the Machine Learning model to make predictions. Predictions was also include probabilities of accuracy.
 
-## History.
+## History page.
 This page comes to show a dataframe with the previous predictions made and values entered by users showing as a dataframe. And also the time were made and the predicted value including the original input.
 
 In building this Streamlit app, the team followed the process of;
